@@ -130,8 +130,30 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const rect1Right = rect1.left + rect1.width;
+  const rect2Right = rect2.left + rect2.width;
+  const rect1Bottom = rect1.top + rect1.height;
+  const rect2Bottom = rect2.top + rect2.height;
+
+  return (
+    ((rect2.left >= rect1.left && rect2.left <= rect1Right
+      && rect2Bottom <= rect1Bottom && rect2Bottom >= rect1.top)
+      || (rect2.left >= rect1.left && rect2.left <= rect1Right
+        && rect2.top <= rect1Bottom && rect2.top >= rect1.top)
+      || (rect2Right >= rect1.left && rect2.right <= rect1Right
+        && rect2.top <= rect1Bottom && rect2.top >= rect1.top)
+      || (rect2Right >= rect1.left && rect2.right <= rect1Right
+        && rect2Bottom <= rect1Bottom && rect2Bottom >= rect1.top))
+    || ((rect1.left >= rect2.left && rect1.left <= rect2Right
+      && rect1Bottom <= rect2Bottom && rect1Bottom >= rect2.top)
+      || (rect1.left >= rect2.left && rect1.left <= rect2Right
+        && rect1.top <= rect2Bottom && rect1.top >= rect2.top)
+      || (rect1Right >= rect2.left && rect1.right <= rect2Right
+        && rect1.top <= rect2Bottom && rect1.top >= rect2.top)
+      || (rect1Right >= rect2.left && rect1.right <= rect2Right
+        && rect1Bottom <= rect2Bottom && rect1Bottom >= rect2.top))
+  );
 }
 
 
