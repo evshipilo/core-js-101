@@ -94,9 +94,7 @@ function processAllPromises(array) {
  *
  */
 function getFastestPromise(array) {
-  const rr = function (promises) {
-    return Promise.race(promises);
-  };
+  const rr = (promises) => Promise.race(promises);
   return rr(array);
 }
 

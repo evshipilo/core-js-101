@@ -357,7 +357,6 @@ function isBracketsBalanced(str) {
   let res = str;
   while (match === true) {
     match = false;
-    console.log('+');
     if (res.search(/<>/) !== -1) { match = true; res = res.replace(/<>/g, ''); }
     if (res.search(/\(\)/) !== -1) { match = true; res = res.replace(/\(\)/g, ''); }
     if (res.search(/{}/) !== -1) { match = true; res = res.replace(/{}/g, ''); }
@@ -414,9 +413,7 @@ function toNaryString(num, n) {
 function getCommonDirectoryPath(pathes) {
   const arr = pathes;
   let a = arr.shift();
-  const f = function (it) {
-    return (it.indexOf(a) === 0);
-  };
+  const f = (it) => (it.indexOf(a) === 0);
   while (a.length > 0) {
     const filt = arr.filter(f);
 
@@ -450,8 +447,20 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const res = [];
+  for (let i = 0; i < m1.length; i += 1) {
+    const row = [];
+    for (let j = 0; j < m2[0].length; j += 1) {
+      let sum = 0;
+      for (let k = 0; k < m2.length; k += 1) {
+        sum += m1[i][k] * m2[k][j];
+      }
+      row.push(sum);
+    }
+    res.push(row);
+  }
+  return res;
 }
 
 
