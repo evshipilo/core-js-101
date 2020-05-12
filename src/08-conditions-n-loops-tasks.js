@@ -494,8 +494,27 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  if (!position) return undefined;
+  position.forEach((it) => { if (it.length === 2) it.push('3'); });
+  const a = position[0].concat(position[1].concat(position[2]));
+  if ((a[0] === '0' && a[1] === '0' && a[2] === '0')
+    || (a[3] === '0' && a[4] === '0' && a[5] === '0')
+    || (a[6] === '0' && a[7] === '0' && a[8] === '0')
+    || (a[0] === '0' && a[3] === '0' && a[6] === '0')
+    || (a[1] === '0' && a[4] === '0' && a[7] === '0')
+    || (a[2] === '0' && a[5] === '0' && a[8] === '0')
+    || (a[0] === '0' && a[4] === '0' && a[8] === '0')
+    || (a[2] === '0' && a[4] === '0' && a[6] === '0')) return '0';
+  if ((a[0] === 'X' && a[1] === 'X' && a[2] === 'X')
+    || (a[3] === 'X' && a[4] === 'X' && a[5] === 'X')
+    || (a[6] === 'X' && a[7] === 'X' && a[8] === 'X')
+    || (a[0] === 'X' && a[3] === 'X' && a[6] === 'X')
+    || (a[1] === 'X' && a[4] === 'X' && a[7] === 'X')
+    || (a[2] === 'X' && a[5] === 'X' && a[8] === 'X')
+    || (a[0] === 'X' && a[4] === 'X' && a[8] === 'X')
+    || (a[2] === 'X' && a[4] === 'X' && a[6] === 'X')) return 'X';
+  return undefined;
 }
 
 
